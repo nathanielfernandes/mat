@@ -1,4 +1,4 @@
-use std::ops::{BitXor, Mul, Not};
+use std::ops::{Mul, Not};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub struct Matrix<const H: usize, const W: usize> {
