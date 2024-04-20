@@ -197,6 +197,20 @@ impl<const H: usize, const W: usize> std::ops::IndexMut<usize> for Matrix<H, W> 
     }
 }
 
+impl<const H: usize, const W: usize> std::ops::Index<(usize, usize)> for Matrix<H, W> {
+    type Output = f32;
+
+    fn index(&self, index: (usize, usize)) -> &Self::Output {
+        &self.data[index.0][index.1]
+    }
+}
+
+impl<const H: usize, const W: usize> std::ops::IndexMut<(usize, usize)> for Matrix<H, W> {
+    fn index_mut(&mut self, index: (usize, usize)) -> &mut Self::Output {
+        &mut self.data[index.0][index.1]
+    }
+}
+
 impl<const W: usize, const H: usize> std::fmt::Display for Matrix<W, H> {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         for row in self.data.iter() {
