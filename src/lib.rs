@@ -2,14 +2,27 @@ use std::ops::Mul;
 
 const EPSILON: f32 = 1e-6;
 
+pub type Vector<const N: usize> = Matrix<1, N>;
+pub type Vec2 = Vector<2>;
+pub type Vec3 = Vector<3>;
+pub type Vec4 = Vector<4>;
+
+pub type Matrix2 = Matrix<2, 2>;
+pub type Matrix3 = Matrix<3, 3>;
+pub type Matrix4 = Matrix<4, 4>;
+pub type Matrix5 = Matrix<5, 5>;
+pub type Matrix6 = Matrix<6, 6>;
+pub type Matrix7 = Matrix<7, 7>;
+pub type Matrix8 = Matrix<8, 8>;
+
 #[derive(Debug, Clone, Copy)]
 pub struct Matrix<const H: usize, const W: usize> {
     pub data: [[f32; W]; H],
 }
 
 impl<const H: usize, const W: usize> Matrix<H, W> {
-    pub const fn new(data: [[f32; W]; H]) -> Self {
-        Self { data }
+    pub fn new(data: impl Into<Matrix<H, W>>) -> Self {
+        data.into()
     }
 
     pub const fn zero() -> Self {
